@@ -1,5 +1,5 @@
+import { DatabaseService } from './../../service/database.service';
 import { Movie } from './../../interface/movie';
-import { MovieService } from './../../service/movie.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -10,14 +10,14 @@ import { Component, OnInit } from '@angular/core';
 export class MoviesComponent implements OnInit {
   movies: Movie[];
 
-  constructor(private movieService: MovieService) { }
+  constructor(private db: DatabaseService) { }
 
   ngOnInit() {
     this.getMovies();
   }
 
   getMovies(): void {
-    this.movieService.getMovies().subscribe(movies => this.movies = movies);
+    this.db.getMovies().subscribe(movies => this.movies = movies);
   }
 
 }

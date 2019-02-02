@@ -1,8 +1,6 @@
+import { AngularFireDatabase } from '@angular/fire/database';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './service/in-memory-data.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +9,8 @@ import { MovieDetailComponent } from './component/movie-detail/movie-detail.comp
 import { FrontpageComponent } from './component/frontpage/frontpage.component';
 import { JoinPipe } from './pipe/join.pipe';
 import { MinutePipe } from './pipe/minute.pipe';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -24,12 +24,9 @@ import { MinutePipe } from './pipe/minute.pipe';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    )
+    AngularFireModule.initializeApp(environment.firebase)
   ],
-  providers: [],
+  providers: [AngularFireDatabase],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
