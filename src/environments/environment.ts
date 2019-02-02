@@ -5,12 +5,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyC_dysHCkSV277UV4GM5A57a9fs6BZPA-w',
-    authDomain: 'angular-cinema-69088.firebaseapp.com',
-    databaseURL: 'https://angular-cinema-69088.firebaseio.com',
-    projectId: 'angular-cinema-69088',
-    storageBucket: 'angular-cinema-69088.appspot.com',
-    messagingSenderId: '1043203053962'
+    apiKey: 'AIzaSyA-0Ze_bvoxJlxFoeTFsHTYkTN7NEzjJ5M',
+    authDomain: 'angular-cinema-aceea.firebaseapp.com',
+    databaseURL: 'https://angular-cinema-aceea.firebaseio.com',
+    projectId: 'angular-cinema-aceea',
+    storageBucket: '',
+    messagingSenderId: '224009656767'
   }
 };
 

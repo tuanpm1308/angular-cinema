@@ -1,0 +1,23 @@
+<div class="container py-5">
+  <div class="movielist">
+    <div class="movielist-data my-5 row" *ngFor="let movie of movies">
+      <div class="movielist-poster col-md-3">
+        <a href=""><img class="img-fluid" src="{{movie.poster}}" alt="{{movie.title}}" /></a>
+      </div>
+      <div class="movielist-info col-md-9">
+        <a class="subtitle h3">{{movie.title}}</a>
+        <p class="movielist-overview">{{movie.overview}}</p>
+        <div class="movielist-meta">
+          <dl class="movielist-meta-cast">
+            <dt>Starring:</dt>
+            <dd>{{movie.cast | join:', '}}</dd>
+          </dl>
+          <dl class="movielist-meta-runtime">
+            <dt>Running Time:</dt>
+            <dd>{{movie.runtime | minute}}</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

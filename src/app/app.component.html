@@ -1,3 +1,45 @@
-
+<header class="bg-dark">
+  <div class="container">
+    <div class="navbar navbar-expand navbar-dark bg-dark px-0 py-3">
+      <a routerLink="/" class="navbar-brand">Angular Cinema</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse ml-4" id="navbar-menu">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a href="" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">Movies</a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">Offers</a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">News</a>
+          </li>
+        </ul>
+        <form class="form-inline">
+          <input type="search" class="form-control" placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+<main id="main" class="site-main main">
+  <app-movies></app-movies>
+</main>
+<footer class="footer mt-5 py-5">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-item d-lg-flex justify-content-lg-between laign-items-lg-center">
+        <ul id="menu-footer" class="nav sub-nav footer-sub-nav">
+          <li class="menu-item mr-4"><a href="">Help Center</a></li>
+          <li class="menu-item mr-4"><a href="">Terms of Service</a></li>
+          <li class="menu-item"><a href="">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
 
 <router-outlet></router-outlet>
