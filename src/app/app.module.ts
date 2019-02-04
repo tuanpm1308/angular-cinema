@@ -11,6 +11,7 @@ import { JoinPipe } from './pipe/join.pipe';
 import { MinutePipe } from './pipe/minute.pipe';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
+import { ShowtimesComponent } from './component/showtimes/showtimes.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { environment } from 'src/environments/environment';
     MovieDetailComponent,
     FrontpageComponent,
     JoinPipe,
-    MinutePipe
+    MinutePipe,
+    ShowtimesComponent
   ],
   imports: [
     BrowserModule,

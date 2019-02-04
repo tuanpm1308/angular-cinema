@@ -1,6 +1,6 @@
 import { DatabaseService } from './../../service/database.service';
 import { Movie } from './../../interface/movie';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-movies',
@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MoviesComponent implements OnInit {
   movies: Movie[];
+  showAll: boolean[] = [];
 
   constructor(private db: DatabaseService) { }
 
@@ -17,7 +18,10 @@ export class MoviesComponent implements OnInit {
   }
 
   getMovies(): void {
-    this.db.getMovies().subscribe(movies => this.movies = movies);
+    this.db.getNowPlayingMovies().subscribe(movies => this.movies = movies);
   }
 
+  showAllShowtimes(movieId) {
+    this.showAll[movieId] = true;
+  }
 }

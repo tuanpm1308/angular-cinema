@@ -17,6 +17,11 @@
             <dd>{{movie.runtime | minute}}</dd>
           </dl>
         </div>
+
+        <app-showtimes [movie]="movie" [todayOnly]="!showAll[movie.id]"></app-showtimes>
+        <a class="movelist-more-showtime"
+        (click)="showAllShowtimes(movie.id)"
+        *ngIf="!showAll[movie.id]">Show All Showtimes</a>
       </div>
     </div>
   </div>
