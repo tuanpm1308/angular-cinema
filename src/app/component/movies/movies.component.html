@@ -1,11 +1,11 @@
 <div class="container py-5">
   <div class="movielist">
-    <div class="movielist-data my-5 row" *ngFor="let movie of movies">
+    <div class="movielist-data my-5 pb-5 row" *ngFor="let movie of movies">
       <div class="movielist-poster col-md-3">
-        <a href=""><img class="img-fluid" src="{{movie.poster}}" alt="{{movie.title}}" /></a>
+        <a routerLink="/movie/{{movie.id}}"><img class="img-fluid" src="{{movie.poster}}" alt="{{movie.title}}" /></a>
       </div>
       <div class="movielist-info col-md-9">
-        <a class="subtitle h3">{{movie.title}}</a>
+        <a routerLink="/movie/{{movie.id}}" class="subtitle h3">{{movie.title}}</a>
         <p class="movielist-overview">{{movie.overview}}</p>
         <div class="movielist-meta">
           <dl class="movielist-meta-cast">
@@ -19,9 +19,14 @@
         </div>
 
         <app-showtimes [movie]="movie" [todayOnly]="!showAll[movie.id]"></app-showtimes>
-        <a class="movelist-more-showtime"
+
+        <a href="javascript:void(0)" class="movelist-more-showtime"
         (click)="showAllShowtimes(movie.id)"
         *ngIf="!showAll[movie.id]">Show All Showtimes</a>
+
+        <a href="javascript:void(0)" class="movelist-today-showtime"
+        (click)="hideAllShowtimes(movie.id)"
+        *ngIf="showAll[movie.id]">Hide All Showtimes</a>
       </div>
     </div>
   </div>

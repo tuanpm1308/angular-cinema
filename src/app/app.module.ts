@@ -12,6 +12,7 @@ import { MinutePipe } from './pipe/minute.pipe';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { ShowtimesComponent } from './component/showtimes/showtimes.component';
+import { DayPipe } from './pipe/day.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ShowtimesComponent } from './component/showtimes/showtimes.component';
     FrontpageComponent,
     JoinPipe,
     MinutePipe,
-    ShowtimesComponent
+    ShowtimesComponent,
+    DayPipe
   ],
   imports: [
     BrowserModule,

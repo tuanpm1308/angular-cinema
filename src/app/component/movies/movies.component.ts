@@ -24,4 +24,8 @@ export class MoviesComponent implements OnInit {
   showAllShowtimes(movieId) {
     this.showAll[movieId] = true;
   }
+
+  hideAllShowtimes(movieId) {
+    this.showAll[movieId] = false;
+  }
 }

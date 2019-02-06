@@ -1,9 +1,9 @@
-<header class="bg-dark">
+<header class="header">
   <div class="container">
-    <div class="navbar navbar-expand navbar-dark bg-dark px-0 py-3">
+    <div class="navbar navbar-expand-lg navbar-dark">
       <a routerLink="/" class="navbar-brand">Angular Cinema</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu"><span class="navbar-toggler-icon"></span></button>
-      <div class="collapse navbar-collapse ml-4" id="navbar-menu">
+      <div class="collapse navbar-collapse" id="navbar-menu">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
             <a href="" class="nav-link">Home</a>
@@ -26,9 +26,9 @@
   </div>
 </header>
 <main id="main" class="site-main main">
-  <app-movies></app-movies>
+  <router-outlet></router-outlet>
 </main>
-<footer class="footer mt-5 py-5">
+<footer class="footer mt-4 py-4">
   <div class="container">
     <div class="footer-inner">
       <div class="footer-item d-lg-flex justify-content-lg-between laign-items-lg-center">
@@ -41,5 +41,3 @@
     </div>
   </div>
 </footer>
-
-<router-outlet></router-outlet>
