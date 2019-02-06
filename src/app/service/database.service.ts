@@ -1,5 +1,5 @@
 import { Observable, of } from 'rxjs';
-import { map, filter, switchMap, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Injectable } from '@angular/core';
 import { Movie } from './../interface/movie';
