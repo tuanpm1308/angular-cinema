@@ -1,17 +1,17 @@
 import { Component, OnInit, Input, SimpleChange, SimpleChanges, OnChanges } from '@angular/core';
-import { Movie } from './../../interface/movie';
-import { Showtime } from './../../interface/showtime';
-import { DatabaseService } from './../../service/database.service';
+import { Movie } from '../../interface/movie';
+import { DatabaseService } from '../../service/database.service';
+import { ShowtimeDate } from 'src/app/interface/showtime-date';
 
 @Component({
-  selector: 'app-showtimes',
-  templateUrl: './showtimes.component.html',
-  styleUrls: ['./showtimes.component.sass']
+  selector: 'app-movies-showtimes',
+  templateUrl: './movies-showtimes.component.html',
+  styleUrls: ['./movies-showtimes.component.sass']
 })
-export class ShowtimesComponent implements OnInit, OnChanges {
+export class MoviesShowtimesComponent implements OnInit, OnChanges {
   @Input() movie: Movie;
   @Input() todayOnly = true;
-  showtimes: Showtime[];
+  showtimes: ShowtimeDate[];
 
   constructor(private db: DatabaseService) { }
 

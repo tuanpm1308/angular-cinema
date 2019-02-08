@@ -1,13 +1,13 @@
 export interface Movie {
   id: number;
   imdbId: string;
-  imdbRating: string;
+  imdbRating: number;
   title: string;
   poster: string;
   trailer: string;
   overview: string;
   director: string;
-  cast: string | string[];
+  cast: string[];
   release_date: string;
   start_date: string;
   end_date: string;

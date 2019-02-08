@@ -1,45 +1,53 @@
+import { ShowtimeDate } from './../interface/showtime-date';
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { AngularFireDatabase } from '@angular/fire/database';
+import { map, catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Movie } from './../interface/movie';
 import { Showtime } from './../interface/showtime';
-import { ShowtimeMovie } from './../interface/showtime-movie';
-import { ShowtimeDate } from './../interface/showtime-date';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DatabaseService {
-  movies: Observable<Movie[]>;
-  showtimes: Observable<ShowtimeMovie[]>;
+  private moviesUrl = 'api/movies';
+  private showtimesUrl = 'api/showtimes';
 
-  constructor(private db: AngularFireDatabase) { }
+  constructor(private http: HttpClient) { }
+
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T>  => {
+      console.error(error);
+
+      return of(result as T);
+    };
+  }
 
   // Get all movies
   getMovies(): Observable<Movie[]> {
-    return this.db.list<Movie>('movies').valueChanges();
+    return null;
   }
 
   // Get now playing moving
-  getNowPlayingMovies(): Observable<Movie[]> {
+  getNowPlayingMovies(date: string): Observable<Movie[]> {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    return this.db.list<Movie>('movies').valueChanges().pipe(
-      map(movies => movies.filter(movie => new Date(movie.start_date) <= today && new Date(movie.end_date) >= today)));
+    return this.http.get<Movie[]>(this.moviesUrl)
+      .pipe(
+        map(movies => movies.filter(movie => new Date(movie.start_date) <= today && new Date(movie.end_date) >= today)),
+        catchError(this.handleError('getNowPlayingMovies', []))
+      );
   }
 
   // Get movie showtimes
-  getMovieShowtimes(movie: Movie | number, onlyToday: boolean = true): Observable<Showtime[]> {
+  getMovieShowtimes(movie: Movie | number, onlyToday: boolean = true): Observable<ShowtimeDate[]> {
     let movieId = null;
 
     if (typeof movie === 'object') {
       movieId = movie.id;
-    } else if (typeof movie === 'number') {
+    } if (typeof movie === 'number') {
       movieId = movie;
-    } else {
-      return null;
     }
 
     //
@@ -49,21 +57,18 @@ export class DatabaseService {
     next6days.setHours(0, 0, 0, 0);
     next6days.setDate(next6days.getDate() + 6);
 
-    return this.db.list<ShowtimeDate>('showtimes').valueChanges().pipe(
-      map(showtimes => showtimes.filter(showtime => {
-        const st = new Date(showtime.date);
-        return showtime.movies.filter(m => m.id === movieId).length > 0 && (onlyToday ? st.getTime() === today.getTime() : st >= today && st <= next6days);
-      })),
-      map(showtimes => {
-        const result: Showtime[] = [];
+    return this.http.get<Showtime[]>(this.showtimesUrl)
+      .pipe(
+        map(showtimes => showtimes.filter(showtime => {
+          showtime.showtimes = showtime.showtimes.filter(showtimesDate => {
+            const date = new Date(showtimesDate.date);
+            return onlyToday ? date.getTime() === today.getTime() : date >= today && date <= next6days;
+          });
 
-        for (const showtime of showtimes) {
-          const moveShowtime: Showtime = { date: showtime.date, showtimes: showtime.movies.filter(m => m.id === movieId)[0].showtimes };
-          result.push(moveShowtime);
-        }
-
-        return result;
-      })
-    );
+          return showtime.movieId === movieId;
+        })),
+        map(showtimes => showtimes.length ? showtimes[0].showtimes : []),
+        catchError(this.handleError('getNowPlayingMovies', []))
+      );
   }
 }

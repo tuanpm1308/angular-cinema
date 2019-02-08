@@ -3,7 +3,7 @@
     <div class="showtime-date">{{showtime.date | day}}</div>
     <div class="showtime-section">
       <ul>
-        <li class="showtime-section-detail" *ngFor="let time of showtime.showtimes">
+        <li class="showtime-section-detail" *ngFor="let time of showtime.times">
           <a href="javascript:void(0);">
             <time>{{time.time || time}}</time>
             <span>{{time.type ? time.type : '2D'}}</span>

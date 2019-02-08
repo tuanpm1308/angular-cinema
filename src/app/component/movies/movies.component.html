@@ -18,7 +18,7 @@
           </dl>
         </div>
 
-        <app-showtimes [movie]="movie" [todayOnly]="!showAll[movie.id]"></app-showtimes>
+        <app-movies-showtimes [movie]="movie" [todayOnly]="!showAll[movie.id]"></app-movies-showtimes>
 
         <a href="javascript:void(0)" class="movelist-more-showtime"
         (click)="showAllShowtimes(movie.id)"

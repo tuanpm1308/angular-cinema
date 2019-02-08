@@ -1,3 +1,4 @@
+import { InMemoryDataService } from './service/in-memory-data.service';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -9,10 +10,12 @@ import { MovieDetailComponent } from './component/movie-detail/movie-detail.comp
 import { FrontpageComponent } from './component/frontpage/frontpage.component';
 import { JoinPipe } from './pipe/join.pipe';
 import { MinutePipe } from './pipe/minute.pipe';
-import { AngularFireModule } from '@angular/fire';
-import { environment } from 'src/environments/environment';
-import { ShowtimesComponent } from './component/showtimes/showtimes.component';
+import { MoviesShowtimesComponent } from './component/movies-showtimes/movies-showtimes.component';
 import { DayPipe } from './pipe/day.pipe';
+import { DatabaseService } from './service/database.service';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { MoviesFilterComponent } from './component/movies-filter/movies-filter.component';
 
 @NgModule({
   declarations: [
@@ -22,15 +25,19 @@ import { DayPipe } from './pipe/day.pipe';
     FrontpageComponent,
     JoinPipe,
     MinutePipe,
-    ShowtimesComponent,
-    DayPipe
+    MoviesShowtimesComponent,
+    DayPipe,
+    MoviesFilterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false }
+    )
   ],
-  providers: [AngularFireDatabase],
+  providers: [DatabaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

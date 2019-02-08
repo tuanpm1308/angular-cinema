@@ -1,6 +1,6 @@
-import { ShowtimeMovie } from './showtime-movie';
+import { ShowtimeTime } from './showtime-time';
 
 export interface ShowtimeDate {
   date: string;
-  movies: ShowtimeMovie[];
+  times: (string | ShowtimeTime)[];
 }

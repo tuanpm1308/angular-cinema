@@ -18,7 +18,7 @@ export class MoviesComponent implements OnInit {
   }
 
   getMovies(): void {
-    this.db.getNowPlayingMovies().subscribe(movies => this.movies = movies);
+    this.db.getNowPlayingMovies('').subscribe(movies => this.movies = movies);
   }
 
   showAllShowtimes(movieId) {
