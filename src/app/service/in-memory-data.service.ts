@@ -16,6 +16,17 @@ export class InMemoryDataService implements InMemoryDbService {
     const data: Database = mockData;
 
     // setup demo showtimes data
+    const randomDate = [
+      [1, 0, 1, 0, 1, 0, 0],
+      [0, 1, 1, 0, 0, 0, 1],
+      [1, 0, 1, 1, 0, 1, 0],
+      [1, 1, 0, 1, 1, 0, 0],
+      [0, 1, 1, 0, 0, 1, 1],
+      [1, 0, 0, 1, 1, 1, 1],
+      [0, 0, 0, 1, 0, 1, 0],
+      [1, 0, 0, 0, 1, 0, 1]
+    ];
+
     for (const i in data.showtimes) {
       if (data.showtimes[i]) {
         const today = new Date();
@@ -23,13 +34,16 @@ export class InMemoryDataService implements InMemoryDbService {
         data.showtimes[i].showtimes = [];
 
         for (let c = 0; c < 7; c++) {
-          const newShowtime: ShowtimeDate = {
-            date: this.dateToString(today),
-            times: showtime.times
-          };
+          if (randomDate[i][c]) {
+            const newShowtime: ShowtimeDate = {
+              date: this.dateToString(today),
+              times: showtime.times
+            };
+
+            data.showtimes[i].showtimes.push(newShowtime);
+          }
 
           today.setDate(today.getDate() + 1);
-          data.showtimes[i].showtimes.push(newShowtime);
         }
       }
     }

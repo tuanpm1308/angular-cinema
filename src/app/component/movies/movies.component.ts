@@ -1,5 +1,4 @@
-import { DatabaseService } from './../../service/database.service';
-import { Movie } from './../../interface/movie';
+import { FilterDate } from './../../interface/filter-date';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -8,24 +7,37 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./movies.component.sass']
 })
 export class MoviesComponent implements OnInit {
-  movies: Movie[];
-  showAll: boolean[] = [];
+  filters: FilterDate[];
+  selectedDate: string;
 
-  constructor(private db: DatabaseService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.getMovies();
+    this.getFilters();
   }
 
-  getMovies(): void {
-    this.db.getNowPlayingMovies('').subscribe(movies => this.movies = movies);
+  // get filters value, text to display
+  getFilters() {
+    const weekday = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const date = new Date();
+    this.filters = [];
+    this.selectedDate = this.dateToString(date);
+
+    for (let i = 0; i < 7; i++) {
+      this.filters.push({ date: this.dateToString(date), day:  i === 0 ? 'Today' : weekday[date.getDay()] });
+      date.setDate(date.getDate() + 1);
+    }
+
+    this.filters.push({ date: 'all', day: 'All Times' });
   }
 
-  showAllShowtimes(movieId) {
-    this.showAll[movieId] = true;
+  // change filter
+  changeFilter(date: string) {
+    this.selectedDate = date;
   }
 
-  hideAllShowtimes(movieId) {
-    this.showAll[movieId] = false;
+  // date to string mm/dd/yyyy
+  private dateToString(date: Date): string {
+    return (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
   }
 }

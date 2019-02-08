@@ -15,7 +15,8 @@ import { DayPipe } from './pipe/day.pipe';
 import { DatabaseService } from './service/database.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { MoviesFilterComponent } from './component/movies-filter/movies-filter.component';
+import { MoviesListComponent } from './component/movies-list/movies-list.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -23,15 +24,16 @@ import { MoviesFilterComponent } from './component/movies-filter/movies-filter.c
     MoviesComponent,
     MovieDetailComponent,
     FrontpageComponent,
+    MoviesShowtimesComponent,
     JoinPipe,
     MinutePipe,
-    MoviesShowtimesComponent,
     DayPipe,
-    MoviesFilterComponent
+    MoviesListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ModalModule.forRoot(),
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }

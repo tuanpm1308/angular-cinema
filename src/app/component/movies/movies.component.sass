@@ -1,20 +1,16 @@
-.movielist-data
+.movielist-filters
+  list-style: none
+  padding-left: 0
+  padding-bottom: 16px
   border-bottom: 1px solid #333
 
-.movielist-info
-  .subtitle
+  li
+    list-style: none
     display: inline-block
-    margin-bottom: 1rem
+    margin-right: 20px
 
-.movielist-meta
-  dl
-    display: flex
-    margin-bottom: 0
-    font-size: 14px
+    &:last-child
+      margin-right: 0
 
-  dt
-    margin-right: .4rem
-    color: #ddd
-
-  dd
-    color: #777
+    &.selected a
+      color: #fff

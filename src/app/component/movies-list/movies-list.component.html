@@ -1,0 +1,60 @@
+<div class="movielist">
+  <div class="movielist-data my-5 pb-5 row" *ngFor="let movie of movies">
+    <div class="movielist-poster col-md-3">
+      <a routerLink="/movie/{{ movie.id }}"
+        ><img class="img-fluid" src="{{ movie.poster }}" alt="{{ movie.title }}"
+      /></a>
+      <a href="javascript:void(0)" class="movielist-play-trailer" (click)="openModal(preview, getEmbedUrl(movie.trailer))"></a>
+    </div>
+    <div class="movielist-info col-md-9">
+      <a routerLink="/movie/{{ movie.id }}" class="subtitle h3">{{
+        movie.title
+      }}</a>
+      <p class="movielist-overview">{{ movie.overview }}</p>
+      <div class="movielist-meta">
+        <dl class="movielist-meta-cast">
+          <dt>Starring:</dt>
+          <dd>{{ movie.cast | join: ", " }}</dd>
+        </dl>
+        <dl class="movielist-meta-runtime">
+          <dt>Running Time:</dt>
+          <dd>{{ movie.runtime | minute }}</dd>
+        </dl>
+      </div>
+
+      <app-movies-showtimes
+        [movie]="movie"
+        [showAllTimes]="showAllTimes[movie.id]"
+        [filterDate]="filterDate"
+      ></app-movies-showtimes>
+
+      <a
+        href="javascript:void(0)"
+        class="movelist-more-showtime"
+        (click)="showAllShowtimes(movie.id)"
+        *ngIf="!showAllTimes[movie.id]"
+        >Show All Showtimes</a
+      >
+
+      <a
+        href="javascript:void(0)"
+        class="movelist-today-showtime"
+        (click)="hideAllShowtimes(movie.id)"
+        *ngIf="showAllTimes[movie.id]"
+        >Hide All Showtimes</a
+      >
+    </div>
+  </div>
+</div>
+
+<ng-template #preview>
+  <div class="modal-body">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <!-- 16:9 aspect ratio -->
+    <div class="embed-responsive embed-responsive-16by9">
+      <iframe class="embed-responsive-item"  [src]="getPreviewUrl()" allowscriptaccess="always"></iframe>
+    </div>
+  </div>
+</ng-template>

@@ -10,7 +10,8 @@ import { ShowtimeDate } from 'src/app/interface/showtime-date';
 })
 export class MoviesShowtimesComponent implements OnInit, OnChanges {
   @Input() movie: Movie;
-  @Input() todayOnly = true;
+  @Input() showAllTimes: boolean;
+  @Input() filterDate: string;
   showtimes: ShowtimeDate[];
 
   constructor(private db: DatabaseService) { }
@@ -20,12 +21,12 @@ export class MoviesShowtimesComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['todayOnly']) {
+    if (changes['showAllTimes']) {
       this.getShowtimes();
     }
   }
 
   getShowtimes(): void {
-    this.db.getMovieShowtimes(this.movie, this.todayOnly).subscribe(showtimes => this.showtimes = showtimes);
+    this.db.getMovieShowtimes(this.movie, this.filterDate, this.showAllTimes).subscribe(showtimes => this.showtimes = showtimes);
   }
 }

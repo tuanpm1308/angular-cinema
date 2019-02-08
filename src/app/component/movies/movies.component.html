@@ -1,33 +1,8 @@
 <div class="container py-5">
-  <div class="movielist">
-    <div class="movielist-data my-5 pb-5 row" *ngFor="let movie of movies">
-      <div class="movielist-poster col-md-3">
-        <a routerLink="/movie/{{movie.id}}"><img class="img-fluid" src="{{movie.poster}}" alt="{{movie.title}}" /></a>
-      </div>
-      <div class="movielist-info col-md-9">
-        <a routerLink="/movie/{{movie.id}}" class="subtitle h3">{{movie.title}}</a>
-        <p class="movielist-overview">{{movie.overview}}</p>
-        <div class="movielist-meta">
-          <dl class="movielist-meta-cast">
-            <dt>Starring:</dt>
-            <dd>{{movie.cast | join:', '}}</dd>
-          </dl>
-          <dl class="movielist-meta-runtime">
-            <dt>Running Time:</dt>
-            <dd>{{movie.runtime | minute}}</dd>
-          </dl>
-        </div>
-
-        <app-movies-showtimes [movie]="movie" [todayOnly]="!showAll[movie.id]"></app-movies-showtimes>
-
-        <a href="javascript:void(0)" class="movelist-more-showtime"
-        (click)="showAllShowtimes(movie.id)"
-        *ngIf="!showAll[movie.id]">Show All Showtimes</a>
-
-        <a href="javascript:void(0)" class="movelist-today-showtime"
-        (click)="hideAllShowtimes(movie.id)"
-        *ngIf="showAll[movie.id]">Hide All Showtimes</a>
-      </div>
-    </div>
-  </div>
+  <ul class="movielist-filters">
+    <li *ngFor="let filter of filters" [class.selected]="filter.date === selectedDate">
+      <a href="javascript:void(0)" (click)="changeFilter(filter.date)">{{filter.day}}</a>
+    </li>
+  </ul>
+  <app-movies-list [filterDate]="selectedDate"></app-movies-list>
 </div>
