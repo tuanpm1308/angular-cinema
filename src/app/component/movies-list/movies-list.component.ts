@@ -34,12 +34,12 @@ export class MoviesListComponent implements OnInit, OnChanges {
   }
 
   // show all showtimes
-  showAllShowtimes(movieId): void {
+  showAllShowtimes(movieId: number): void {
     this.showAllTimes[movieId] = true;
   }
 
   // hide all showtimes
-  hideAllShowtimes(movieId): void {
+  hideAllShowtimes(movieId: number): void {
     this.showAllTimes[movieId] = false;
   }
 
