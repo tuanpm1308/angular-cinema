@@ -1,5 +1,4 @@
 import { InMemoryDataService } from './service/in-memory-data.service';
-import { AngularFireDatabase } from '@angular/fire/database';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
