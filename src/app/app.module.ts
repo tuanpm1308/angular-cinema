@@ -9,13 +9,14 @@ import { MovieDetailComponent } from './component/movie-detail/movie-detail.comp
 import { FrontpageComponent } from './component/frontpage/frontpage.component';
 import { JoinPipe } from './pipe/join.pipe';
 import { MinutePipe } from './pipe/minute.pipe';
-import { MoviesShowtimesComponent } from './component/movies-showtimes/movies-showtimes.component';
+import { ShowtimesComponent } from './component/showtimes/showtimes.component';
 import { DayPipe } from './pipe/day.pipe';
 import { DatabaseService } from './service/database.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { MoviesListComponent } from './component/movies-list/movies-list.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { SafePipe } from './pipe/safe.pipe';
 
 @NgModule({
   declarations: [
@@ -23,11 +24,12 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     MoviesComponent,
     MovieDetailComponent,
     FrontpageComponent,
-    MoviesShowtimesComponent,
+    ShowtimesComponent,
     JoinPipe,
     MinutePipe,
     DayPipe,
-    MoviesListComponent
+    MoviesListComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,

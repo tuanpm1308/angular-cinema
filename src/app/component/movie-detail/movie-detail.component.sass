@@ -1,0 +1,55 @@
+.movie-backdrop
+  height: 300px
+  width: 100%
+  background: top center transparent
+  position: relative
+
+  &:after
+    content: ""
+    position: absolute
+    width: 100%
+    height: 100%
+    top: 0
+    left: 0
+    background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.8))
+
+.movie-poster
+  position: relative
+  margin-bottom: 20px
+  margin-top: -100px
+
+  img
+    box-shadow: 0 0 60px 1px rgba(100, 100, 100, .6)
+
+  .movie-play-trailer
+    display: block
+    position: absolute
+    bottom: 20px
+    left: 20px
+    width: 48px
+    height: 48px
+    background: url(../../../assets/play.png)
+    opacity: 0.7
+
+    &:hover
+      opacity: 1
+
+.movie-title
+  position: absolute
+  top: -70px
+
+.movie-info
+  padding-top: 30px
+
+.movie-meta
+  dl
+    display: flex
+    margin-bottom: 0
+    font-size: 14px
+
+  dt
+    margin-right: .4rem
+    color: #ddd
+
+  dd
+    color: #777

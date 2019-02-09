@@ -1,3 +1,48 @@
-<p>
-  movie-detail works!
-</p>
+<div *ngIf="movie">
+  <div class="movie-backdrop" [ngStyle]="{ 'background-image': 'url(' + movie.backdrop + ')' }"></div>
+  <div class="container">
+    <div class="movie-data row">
+      <div class="col-md-4">
+        <div class="movie-poster">
+          <img class="img-fluid" src="{{ movie.poster }}" alt="{{ movie.title }}" />
+        </div>
+      </div>
+      <div class="col-md-8">
+        <h2 class="movie-title">{{ movie.title }}</h2>
+        <div class="movie-info">
+          <p class="movie-overview">{{ movie.overview }}</p>
+          <div class="movie-meta">
+            <dl class="movie-meta-cast">
+              <dt>Starring:</dt>
+              <dd>{{ movie.cast | join: ", " }}</dd>
+            </dl>
+            <dl class="movie-meta-runtime">
+              <dt>Running Time:</dt>
+              <dd>{{ movie.runtime | minute }}</dd>
+            </dl>
+          </div>
+
+          <app-showtimes
+            [movie]="movie"
+            [showAllTimes]="showAllTimes"
+            [filterDate]="'all'"
+          ></app-showtimes>
+
+          <a
+            href="javascript:void(0)"
+            class="movie-more-showtime"
+            (click)="showAllShowtimes()"
+            *ngIf="!showAllTimes"
+            >Show All Showtimes</a>
+
+          <a
+            href="javascript:void(0)"
+            class="movie-today-showtime"
+            (click)="hideAllShowtimes()"
+            *ngIf="showAllTimes"
+            >Hide All Showtimes</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

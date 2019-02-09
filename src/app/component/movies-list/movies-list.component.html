@@ -1,10 +1,12 @@
 <div class="movielist">
   <div class="movielist-data my-5 pb-5 row" *ngFor="let movie of movies">
-    <div class="movielist-poster col-md-3">
-      <a routerLink="/movie/{{ movie.id }}"
-        ><img class="img-fluid" src="{{ movie.poster }}" alt="{{ movie.title }}"
-      /></a>
-      <a href="javascript:void(0)" class="movielist-play-trailer" (click)="openModal(preview, getEmbedUrl(movie.trailer))"></a>
+    <div class="col-md-3">
+      <div class="movielist-poster">
+        <a routerLink="/movie/{{ movie.id }}"
+          ><img class="img-fluid" src="{{ movie.poster }}" alt="{{ movie.title }}"
+        /></a>
+        <a href="javascript:void(0)" class="movielist-play-trailer" (click)="openModal(preview, getEmbedUrl(movie.trailer))"></a>
+      </div>
     </div>
     <div class="movielist-info col-md-9">
       <a routerLink="/movie/{{ movie.id }}" class="subtitle h3">{{
@@ -22,11 +24,11 @@
         </dl>
       </div>
 
-      <app-movies-showtimes
+      <app-showtimes
         [movie]="movie"
         [showAllTimes]="showAllTimes[movie.id]"
         [filterDate]="filterDate"
-      ></app-movies-showtimes>
+      ></app-showtimes>
 
       <a
         href="javascript:void(0)"

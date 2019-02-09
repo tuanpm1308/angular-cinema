@@ -4,6 +4,7 @@ export interface Movie {
   imdbRating: number;
   title: string;
   poster: string;
+  backdrop: string;
   trailer: string;
   overview: string;
   director: string;

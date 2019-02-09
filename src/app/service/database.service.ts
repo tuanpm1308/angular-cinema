@@ -93,4 +93,12 @@ export class DatabaseService {
         catchError(this.handleError('getNowPlayingMovies', []))
       );
   }
+
+  // get single movie
+  getMovie(id: number): Observable<Movie> {
+    const url = `${this.moviesUrl}/${id}`;
+    return this.http.get<Movie>(url).pipe(
+      catchError(this.handleError<Movie>(`getMovie id = {id}`))
+    );
+  }
 }
