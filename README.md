@@ -1,6 +1,6 @@
 # Angular Cinema
 
-A complete cinema web app built with Angular. View demo at: https://q9ol9wm0v9.codesandbox.io/movies
+A complete cinema web app built with Angular. View demo at: https://codesandbox.io/s/github/tuanpm1308/Angular-Cinema/tree/master/?view=preview
 
 ## Why I do this project?
 
