@@ -1,8 +1,8 @@
 import { Movie } from './../../interface/movie';
 import { DomSanitizer } from '@angular/platform-browser';
-import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { DatabaseService } from './../../service/database.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 export class MovieDetailComponent implements OnInit {
   movie: Movie;
   showAllTimes = false;
+  modalRef: BsModalRef;
 
   constructor(
     private route: ActivatedRoute,
@@ -42,5 +43,18 @@ export class MovieDetailComponent implements OnInit {
 
   getBackdropUrl() {
     return this.sanitizer.bypassSecurityTrustResourceUrl(this.movie.backdrop);
+  }
+
+  openModal(template: TemplateRef<any>, previewUrl: string) {
+    this.modalRef = this.modalService.show(template);
+    this.modalRef.setClass('modal-lg');
+  }
+
+  getPreviewUrl() {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(this.getEmbedUrl(this.movie.trailer));
+  }
+
+  getEmbedUrl(url: string) {
+    return url.replace('https://www.youtube.com/watch?v=', 'https://www.youtube.com/embed/');
   }
 }

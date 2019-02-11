@@ -5,6 +5,7 @@
       <div class="col-md-4">
         <div class="movie-poster">
           <img class="img-fluid" src="{{ movie.poster }}" alt="{{ movie.title }}" />
+          <a href="javascript:void(0)" class="movie-play-trailer" (click)="openModal(preview)"></a>
         </div>
       </div>
       <div class="col-md-8">
@@ -12,6 +13,10 @@
         <div class="movie-info">
           <p class="movie-overview">{{ movie.overview }}</p>
           <div class="movie-meta">
+            <dl class="movie meta-director">
+              <dt>Director:</dt>
+              <dd>{{ movie.director }}</dd>
+            </dl>
             <dl class="movie-meta-cast">
               <dt>Starring:</dt>
               <dd>{{ movie.cast | join: ", " }}</dd>
@@ -46,3 +51,15 @@
     </div>
   </div>
 </div>
+
+<ng-template #preview>
+    <div class="modal-body">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <!-- 16:9 aspect ratio -->
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item"  [src]="getPreviewUrl()" allowscriptaccess="always"></iframe>
+      </div>
+    </div>
+  </ng-template>
