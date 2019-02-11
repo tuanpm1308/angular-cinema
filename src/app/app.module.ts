@@ -17,6 +17,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { MoviesListComponent } from './component/movies-list/movies-list.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { SafePipe } from './pipe/safe.pipe';
+import { MovieSearchComponent } from './component/movie-search/movie-search.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SafePipe } from './pipe/safe.pipe';
     MinutePipe,
     DayPipe,
     MoviesListComponent,
-    SafePipe
+    SafePipe,
+    MovieSearchComponent
   ],
   imports: [
     BrowserModule,

@@ -25,7 +25,7 @@ export class DatabaseService {
 
   // Get all movies
   getMovies(): Observable<Movie[]> {
-    return null;
+    return of([]);
   }
 
   // Get now playing moving
@@ -99,6 +99,17 @@ export class DatabaseService {
     const url = `${this.moviesUrl}/${id}`;
     return this.http.get<Movie>(url).pipe(
       catchError(this.handleError<Movie>(`getMovie id = {id}`))
+    );
+  }
+
+  // search movies
+  searchMovies(term: string): Observable<Movie[]> {
+    if (!term.trim()) {
+      return of([]);
+    }
+
+    return this.http.get<Movie[]>(`${this.moviesUrl}/?title=${term}`).pipe(
+      catchError(this.handleError<Movie[]>(`searchMovies`, []))
     );
   }
 }

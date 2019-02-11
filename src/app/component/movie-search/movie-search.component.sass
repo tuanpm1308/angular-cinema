@@ -1,0 +1,52 @@
+.movie-search-container
+  position: relative
+
+  input
+    background: #222
+    border: none
+    transition: all 0.4s
+    width: 320px
+
+    &:focus
+      box-shadow: none
+      background: #333
+      width: 320px
+
+      & + .movie-search-result
+        display: block
+
+.movie-search-result
+  //display: none
+  position: absolute
+  left: 0
+  top: 40px
+  width: 320px
+  z-index: 999
+  list-style: none
+  padding-left: 0
+  background: #222
+
+  li
+    a
+      display: block
+      padding: 10px
+      border-bottom: 1px solid #1e1e1e
+
+      &:hover
+        background: #1e1e1e
+        color: #eee
+
+  .movie-search-result-image
+    float: left
+    width: 50px
+    margin-right: 20px
+
+  .movie-search-result-info
+    overflow: hidden
+
+    strong
+      display: block
+
+    em
+      font-size: 12px
+

@@ -1,0 +1,17 @@
+<div class="form-inline movie-search-container">
+  <input #searchBox type="search" class="form-control" placeholder="Search" aria-label="Search" (input)="search(searchBox.value)" />
+
+
+  <ul class="movie-search-result">
+    <li *ngFor="let movie of movies$ | async">
+      <a routerLink="/movie/{{movie.id}}" class="clearfix">
+        <img class="movie-search-result-image" src="{{ movie.poster }}" alt="{{ movie.title }}" />
+        <span class="movie-search-result-info">
+          <strong>{{ movie.title }}</strong>
+          <em>{{ movie.cast | join: ", " }}</em>
+        </span>
+      </a>
+    </li>
+  </ul>
+</div>
+
