@@ -1,7 +1,25 @@
 .moviegrid-item
   margin-bottom: 30px
+  position: relative
 
-  a:hover
+  .moviegrid-play-trailer
+    display: block
+    position: absolute
+    top: 20px
+    left: 20px
+    width: 48px
+    height: 48px
+    background: url(../../../assets/play.png)
+    opacity: 0
+    z-index: 99
+
+  &:hover
+    .moviegrid-play-trailer
+      opacity: 0.7
+
+      &:hover
+        opacity: 1
+
     .moviegrid-poster
       transform: scale(1.05)
 
