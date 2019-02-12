@@ -24,8 +24,25 @@ export class DatabaseService {
   }
 
   // Get all movies
-  getMovies(): Observable<Movie[]> {
-    return of([]);
+  getMovies(limit?: number, exclude?: number | number[]): Observable<Movie[]> {
+    return this.http.get<Movie[]>(this.moviesUrl).pipe(
+      map(movies => {
+        let excludes: number[] = [];
+
+        if (exclude) {
+          if (typeof exclude === 'number') {
+            excludes = [exclude];
+          } else {
+            excludes = exclude;
+          }
+
+          movies = movies.filter(movie => excludes.indexOf(movie.id) === -1);
+        }
+
+        return limit ? movies.slice(0, limit) : movies;
+      }),
+      catchError(this.handleError<Movie[]>(`getMovies`, []))
+    );
   }
 
   // Get now playing moving

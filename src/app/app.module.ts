@@ -18,6 +18,9 @@ import { MoviesListComponent } from './component/movies-list/movies-list.compone
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { SafePipe } from './pipe/safe.pipe';
 import { MovieSearchComponent } from './component/movie-search/movie-search.component';
+import { MoviesGridComponent } from './component/movies-grid/movies-grid.component';
+import { MoviesSliderComponent } from './component/movies-slider/movies-slider.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,9 @@ import { MovieSearchComponent } from './component/movie-search/movie-search.comp
     DayPipe,
     MoviesListComponent,
     SafePipe,
-    MovieSearchComponent
+    MovieSearchComponent,
+    MoviesGridComponent,
+    MoviesSliderComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +45,8 @@ import { MovieSearchComponent } from './component/movie-search/movie-search.comp
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
-    )
+    ),
+    CarouselModule.forRoot()
   ],
   providers: [DatabaseService],
   bootstrap: [AppComponent]

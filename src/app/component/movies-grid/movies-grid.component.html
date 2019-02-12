@@ -1,0 +1,10 @@
+<div class="moviegrid">
+  <div class="row">
+    <div *ngFor="let movie of movies" class="moviegrid-item col-md-{{ 12 / columns }}">
+      <a routerLink="/movie/{{ movie.id }}">
+        <img src="{{ movie.poster }}" alt="{{ movie.title }}" class="moviegrid-poster img-fluid" />
+        <span class="moviegrid-title">{{ movie.title }}</span>
+      </a>
+    </div>
+  </div>
+</div>
